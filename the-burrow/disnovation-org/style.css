@@ -1,0 +1,27 @@
+:root {
+    --maxwidth: 80vw;
+}
+.banner {
+    max-width: var(--maxwidth);
+    width: 100%;
+}
+
+.work-container p {
+    text-transform: lowercase;
+}
+
+.work-container b {
+    text-transform: uppercase;
+}
+a{
+    text-decoration: none;
+}
+
+@media (max-width: 1400px) {
+    :root {
+        --maxwidth: 100vw;
+    }
+    .arrows-container {
+        width: 100%;
+    }
+}

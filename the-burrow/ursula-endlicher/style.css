@@ -1,0 +1,34 @@
+
+/* .banner { */
+/*     max-width: var(--maxwidth); */
+/*     width: 100%; */
+/* } */
+.work-container p b {
+    font-size: 100%;
+    line-height: 0.5;
+}
+#work-a, #work-b {
+    width: 1050px;
+    height: 780px;
+    margin: auto;
+    overflow: hidden;
+    border: none;
+    /* position: fixed; */
+    /* max-width: 800px; */
+    /* max-height: 720px; */
+}
+.video {
+    text-align: left;
+    --max-height: 68vh;
+    max-width: calc(var(--max-height) * (1643/1314));
+    max-height: var(--max-height);
+    --width: calc(100vw - 1em);
+    width: var(--width);
+    height: calc(var(--width) * (1314/1643));
+}
+@media (max-width: 640px) {
+    .video {
+        width: calc(100vw - 1em);
+        height: calc((100vw - 1em) * (468/640));
+    }
+}

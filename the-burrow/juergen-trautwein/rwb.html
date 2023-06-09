@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Who's afraid of RWB?</title>
+    <style>
+      html, body {
+          width: 100%;
+          height: 100%;
+          margin: 0px;
+          border: 0;
+          overflow: hidden;
+          display: block;
+          cursor: url('triangle.png'), auto;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="rwb"></canvas>
+    <script>
+      // HTML5 implementation by Aad Björkro for display in The Burrow
+      // https://h.aard.work (active Nov 2019 - Mar 2020)
+      // From Flash original "Who's afraid of RWB" by Juergen Trautwein
+      // http://www.jtwine.com/ami13stripes.htm (accessed Oct 8, 2019)
+      // Feel free to modify and distribute this code, attribution is appreciated.
+      var canvas = document.getElementById('rwb');
+      var ctx = canvas.getContext('2d');
+      // Use this to control aspect ratio, uneven numbers will
+      // give alternating stripes beginning and ending as red
+      const wDiv = 17;
+      const hDiv = 13;
+      // Makeshift enum
+      const red = 0;
+      const white = 1;
+      const blue = 2;
+      // Used later for drawing
+      const colmap = ['red', 'white', 'blue'];
+
+      class Col {
+          // This basically just keeps track of a width and color
+          // depth and wasBlue are added to implement some functionality of the original
+          constructor(w, c) {
+              this.w = w;
+              this.c = c;
+              this.wasBlue = false;
+              this.depth = 0;
+          }
+      }
+      class Row {
+          // A single stripe, contains an array of Cols
+          constructor(j) {
+              this.j = j;
+              this.arr = [];
+          }
+          init() {
+              // Get first alternating rows of red/white
+              let c = (this.j % 2 == 0) ? red : white;
+              let col = new Col(1.0, c);
+              col.wasRed = true;
+              this.arr.push(col);
+          }
+          update(x) {
+              let sum = 0;
+              let i = 0;
+              // Trace mouse collision
+              for (; i < this.arr.length; i++) {
+                  if (sum + this.arr[i].w >= x) break;
+                  else sum += this.arr[i].w;
+              }
+              let col = this.arr[i];
+              
+              if (col.depth > 2) return;
+              
+              if (col.c == red) {
+                  if (col.w > 0.9) {
+                      // Full red stripe splits
+                      this.arr[i] = this.csplit(col);
+                      this.arr = this.arr.flat();
+                  } else {
+                      // Smaller red stripe becomes white
+                      this.arr[i].c = white;
+                  }
+              } else if (col.c == white) {
+                  // White always becomes blue
+                  this.arr[i].c = blue;
+              } else if (col.c == blue) {
+                  if (col.wasRed) {
+                      // Blue which has been red splits
+                      this.arr[i] = this.csplit(col);
+                      this.arr = this.arr.flat();
+                      
+                  } else {
+                      // Blue which has not been red becomes red
+                      this.arr[i].c = red;
+                      this.arr[i].wasRed = true;
+                  }
+              }
+          }
+          
+          draw() {
+              let sum_w = 0;
+              let h = canvas.height / hDiv;
+              let y = this.j * h;
+              for (let i = 0; i < this.arr.length; i++) {
+                  const col = this.arr[i];
+                  let x = sum_w;
+                  let w = col.w * canvas.width;
+                  ctx.fillStyle = colmap[col.c];
+                  // All of the stuff below is just to counteract bad AA
+                  // fillRect(x, y, w, h) is correct, but has gaps and blurryness
+                  let dx = x;
+                  let dw = w;
+                  // y-axis never needs to be floating, margin is always large
+                  const dy = Math.round(y);
+                  const dh = Math.ceil(h);
+                  if (col.depth < 2) {
+                      // This works fine for large shapes, they've high tolerance
+                      dx = Math.round(dx);
+                      dw = Math.ceil(dw);        
+                  } else if (col.depth < 3) {
+                      // Smaller shapes are floating if surrounded by other small shapes
+                      // dx is rounded if we're the first shape (i = 0) or last shape is large
+                      // dw is ceiled if we're the last shape (i = length-1) or next shape is large
+                      let bBackChk = (i == 0) || (this.arr[i-1].depth < 2);
+                      let bFrontChk = (i == (this.arr.length - 1)) || (this.arr[i+1].depth < 2);
+                      if (bBackChk) dx = Math.round(dx);
+                      else if (bFrontChk) dw = Math.ceil(dw);
+                  }
+                  let bColChk = (i < (this.arr.length - 1) && this.arr[i+1].c != white);
+                  // If we are not the last shape and next shape is not white add 1px, removes small gaps
+                  if (bColChk) dw += 1;
+                  ctx.fillRect(dx, dy, dw, dh);
+                  sum_w += w;
+              }
+          }
+          csplit(col) {
+              // Splits a width into n=wDiv Col segments with old_width/wDiv width
+              let w = col.w;
+              let new_w = w / wDiv;
+              let result = [];
+              for (let i = 0; i < wDiv; i++) {
+                  if (i % 2 == 0) {
+                      let new_col = new Col(new_w, red);
+                      new_col.wasRed = true;
+                      new_col.depth = col.depth + 1;
+                      result.push(new_col);
+                  } else {
+                      let new_col = new Col(new_w, white);
+                      new_col.depth = col.depth + 1;
+                      result.push(new_col);
+                  }
+              }
+              return result;
+          }
+      }
+
+      class RWB {
+          constructor() {
+              this.rws = [];
+              for (let j = 0; j < hDiv; j++) {
+                  let rw = new Row(j);
+                  rw.init();
+                  this.rws.push(rw);
+              }
+          }
+          draw() {
+              ctx.clearRect(0,0,canvas.width,canvas.height);
+              for (const rw of this.rws) {
+                  rw.draw();
+              }
+          }
+          update(x, y) {
+              // x, y expected to be normalized
+              let j = Math.floor(y * hDiv);
+              this.rws[j].update(x);
+          }
+      }
+
+      var rwb = new RWB;
+
+      window.addEventListener('resize', resizeCanvas, false);
+      function resizeCanvas() {
+          // Note: This gives discretized dynamic size of aspect ratio wDiv : hDiv,
+          // ... by the closest common multiple, will always be smaller than window
+          // let i = Math.floor(window.innerWidth / wDiv);
+          // while(hDiv * i > window.innerHeight) {
+          //   i--;
+          // }
+          // canvas.width = wDiv * i;
+          // canvas.height = hDiv * i;
+
+          // Note: This gives dynamic size bounded to the aspect ratio of wDiv : hDiv
+          // ... will always be of window width
+          // if (window.innerWidth * (hDiv/wDiv) > window.innerHeight) {
+          // canvas.width = window.innerHeight * (wDiv/hDiv);
+          // canvas.height = window.innerHeight;
+          // } else {
+          //   canvas.width = window.innerWidth;
+          //   canvas.height = window.innerWidth * (hDiv/wDiv);
+          // }
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          rwb.draw();
+      }
+      resizeCanvas();
+
+      canvas.addEventListener('click', function(event){
+          let bbox = canvas.getBoundingClientRect();
+          // Get offset mouse coords and normalize
+          var x = (event.pageX - bbox.left) / canvas.width;
+          var y = (event.pageY - bbox.top) / canvas.height;
+          // Update and draw system
+          rwb.update(x, y);
+          rwb.draw();
+      })
+    </script>
+  </body>
+</html>

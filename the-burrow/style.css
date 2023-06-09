@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Turret+Road:400,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600&display=swap'); */
+html, body {overflow: hidden;}
+
+#overlay-underlay-click {
+    display: none;
+    color: #0006;
+    transition: 0.2s;
+}
+#overlay-underlay-click h1 {
+    position: absolute;
+    margin: auto;
+    left: calc(100vw - 600pt - 460pt);
+    top: 0.25em;
+    font-family: "Turret Road", monospace;
+    font-size: 32pt;
+    transition: 0.1s ease-in-out;
+}
+.overlay-container {
+    text-align: right;
+    position: absolute;
+    z-index: 2;
+    overflow-x: hidden;
+    --infobar-width: 0;
+    --infobar-left: 100%;
+    max-width: var(--infobar-width);
+    width: 100%;
+    left: var(--infobar-left);
+    height: 100%;
+    top: 0;
+    background: #fffe;
+    overflow-y: auto;
+    transition: .5s ease-in-out;
+}
+
+#overlayclose-btn {
+    position: relative;
+    background: none;
+    color: black;
+    width: 42pt;
+    height: 42pt;
+    top: 1em;
+    padding: 0;
+}
+#overlayclose-btn svg {fill: #222;}
+#overlayclose-btn svg:hover {fill: #000;}
+
+.overlay-content {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 300;
+    font-size: 5.2mm;
+    text-align: justify;
+    text-align-last: left;
+    text-justify: inter-character;
+    word-break: break-word;
+    hyphens: auto;
+}
+.overlay-content-text {
+    background: #181818;
+    color: #fff;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+    padding-top: 0.2em;
+    padding-bottom: 1em;
+}
+.overlay-content p {line-height: 1.5;}
+.overlay-content p a {
+    color: #9cf;
+    /* color: #f8a; */
+    text-decoration: none;
+    /* text-decoration: underline solid; */
+}
+.overlay-content p a:hover {
+    color: #bdf;
+    text-decoration: none;
+}
+.overlay-content p i {
+    font-family: inherit;
+}
+#headlinep {font-weight: 300;}
+#headlinep b{font-family: "Turret Road", sans-serif;}
+#headlinep a {
+    font-family: "Turret Road", sans-serif;
+    color: #ddd;
+    font-weight: 400;
+    text-decoration: underline dotted;
+}
+#headlinep a:hover {color: #fff;}
+.overlay-content ul {
+    list-style: none;
+    margin: 0.4em;
+}
+.overlay-content .participants {
+    background: #fff;/*#18f;*/
+    color: #111;
+    padding: 1.5em;
+    font-size: 6mm;
+    font-family: "Turret Road", sans-serif;
+    /* cursor: auto; */
+}
+.overlay-content .participants a {
+    color: #f40;
+    /* color: blue; */
+    /* text-decoration: underline dotted; */
+    text-decoration: none;
+    cursor: pointer;
+}
+.overlay-content .participants a:hover {
+    background: #f81;
+    color: white;
+}
+
+.asciiart {padding: 1em 2.5em 0 2.5em;margin: 0;}
+.asciiart pre {
+    transform: translateY(1em);
+    font-size: .7rem;
+    line-height: 96%;
+    font-weight: bold;
+    font-family: "Source Code Pro", monospace;
+    transition: font-size .2s;
+}
+
+@media only screen and (max-width: 600pt) {
+    .overlay-container {
+        left: 0;
+    }
+    .asciiart pre {
+        font-size: 1.4vw;
+    }    
+}
+@media only screen and (max-width: 500px) {
+    .overlay-content .participants {
+        font-size: 12pt;
+    }
+}
+@media only screen and (max-width: 460px) {
+    .overlay-content {
+        font-size: 12pt;
+    }
+    
+}
+
+:root {
+    --headsize: 40pt;
+}
+.head-container {
+    position: absolute;
+    font-size: var(--headsize);
+    font-family: "Turret Road", serif;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    top: 0;
+}
+
+button {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    margin: 0;
+    padding: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.head-container button svg {
+    fill: #fff;
+    width: calc(var(--headsize) * 0.8);
+    height: calc(var(--headsize) * 0.8);
+}
+
+.head-container #THE {
+    position: absolute;
+    left: 0;
+    top: calc(var(--headsize) * 0.6);
+    font-weight: 300;
+}
+.head-container #BURROW {
+    position: absolute;
+    transform-origin: 100% 0% 0;
+    transform: rotate(-90deg);
+    left: calc(-3.8 * var(--headsize));
+    top: calc(var(--headsize) * 1.1);
+    /* left: -80pt; */
+    /* top: 105pt; */
+    /* transform: translate(-50pt, 50pt) rotate(-90deg); */
+    font-weight: 700;
+    cursor: vertical-text;
+}
+
+#refresh-btn {
+    background: #222;
+    position: absolute;
+    left: calc(1.95 * var(--headsize));
+    top: calc(var(--headsize) * 0.09);
+    /* transform: translate(60pt, -76pt); */
+}
+
+#help-btn {
+    display: inline;
+    position: absolute;
+    /* left: 0; */
+    
+    left: calc(100vw - var(--headsize)*0.96);
+    /* top: calc(var(--headsize)); */
+    top: 1px;
+    /* transform: translate(calc(100vw - 42pt), 6pt); */
+    border: 1px dotted black;
+    background: white;
+}
+#help-btn svg {
+    fill: #000;
+    width: calc(var(--headsize) * 0.8);
+    height: calc(var(--headsize)* 0.8);
+}
+#refresh-btn:hover {background: blue;}
+#help-btn:hover {background: #222;}
+#help-btn svg:hover {
+    fill: #eee;
+    background: #222;
+}
+.nwork {
+    cursor: vertical-text;
+    text-align: center;
+    font-size: calc(var(--headsize) / 2.5);
+    position: absolute;
+    width: auto;
+    /* top: 260pt; */
+    /* left: 10pt; */
+    top: calc(var(--headsize) * 5.5);
+    left: calc(var(--headsize)/3);
+    font-family: "Turret Road", monospace;
+    font-weight: 300;
+    line-height: 1.15;
+}
+.nwork b {
+    font-weight: 700;
+}
+.nwork strong {
+    font-weight: 700; 
+    font-family: monospace;
+}
+.button-descr {
+    position: absolute;
+    font-size: calc(var(--headsize) - 26pt);
+    color: #666;
+    font-weigth: 300;
+    /* top: 21.6pt; */
+    /* left: 102pt; */
+    left: calc(3.25 * var(--headsize));
+    top: calc(0.35 * var(--headsize));
+    line-height: 1;
+    /* user-select: none; */
+    /* pointer-events: none; */
+}
+
+#f5text {
+    /* border: none; */
+    color: white;
+    background: gray;
+    outline: 2px solid gray;
+    cursor: pointer;
+    user-select: none;
+    pointer-events: initial;
+}
+#f5text:hover {
+    background: blue;
+    outline: 2px solid blue;
+}
+
+/* @media only screen and (max-width: 630px) { */
+/*     #f5text { */
+/*         display: none; */
+/*     } */
+/*     #f5or { */
+/*         display: none; */
+/*     } */
+/* } */
+/* #f5text:active { */
+/*     background: lightblue; */
+/*     outline: 2px solid lightblue; */
+/* } */
+/* #work { */
+/*     position: absolute; */
+/*     /\* width: 100%; *\/ */
+/*     margin: 0; */
+/*     z-index: -1; */
+/* } */
+iframe {
+    position: absolute;
+    left: calc(var(--headsize));
+    top: calc(var(--headsize));
+    border: none;
+    width: calc(100vw - (var(--headsize)));
+    height: calc(100vh - (var(--headsize)));
+    padding: 0;
+    overflow: hidden;
+}
+
+@media only screen and (max-aspect-ratio: 1/1) {
+    :root {
+        --headsize: 18mm;
+    }
+    .overlay-content {
+        font-size: 5.5mm;
+    }
+    .overlay-content .participants {
+        font-size: 5.5mm;
+        text-align: left;
+    }
+    .overlay-content ul {
+        margin: 0.1em;
+    }
+}

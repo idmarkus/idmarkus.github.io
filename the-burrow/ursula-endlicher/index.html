@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>INPUT FIELDS FOREVER: Roots</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../common.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="icon" type="image/png" href="../favicon.png">
+  </head>
+
+  <body>
+    <div class="work-header">
+      <div class="work-header-inner">
+        <p>INPUT FIELDS FOREVER: Roots<br>
+          <b>Ursula Endlicher</b> 2019</p>
+      </div>
+    </div>
+    <div class="work-container">
+      <iframe id="work-a"></iframe>
+      <iframe id="work-b"></iframe>
+      <p>A short procedural narrative of two superimposed systems – HTML pull-down menus and roots on a forest floor – caught in an endless loop on the cusp of intercommunication. Taking the user out of "user input", pull-down menus answering their own questions.</p>
+
+      <p><i>“Roots”</i> is part of the ongoing series INPUT FIELDS FOREVER (2015–) that reflects on Web-based input forms; “freed” from their usual format of data collection, they become visual and poetic containers creating new spaces between digital and natural systems.</p>
+      
+    </div>
+    <script>
+      function updatePage() {
+          if (typeof(Storage) !== "undefined") {
+              let n = (sessionStorage.last_n) ? (Number(sessionStorage.last_n) + 1) % 50 : 0;
+              wa = document.getElementById('work-a');
+              wb = document.getElementById('work-b');
+              if (n % 2 == 0) {
+                  wb.style.display = "none";
+                  wa.style.display = "block";
+                  wb.src = 'pages/parsed' + (n+1) + '.html';
+              } else {
+                  wa.style.display = "none";
+                  wb.style.display = "block";
+                  wa.src = 'pages/parsed' + (n+1) + '.html';
+              }       
+              sessionStorage.last_n = n;
+          }
+      }
+      window.onload = function() {
+          wa = document.getElementById('work-a');
+          wb = document.getElementById('work-b');
+          wa.style.display = "block";
+          wb.style.display = "none";
+          wa.src = 'pages/parsed1.html';
+          wb.src = 'pages/parsed2.html';
+          sessionStorage.last_n = 1;
+
+          setInterval(updatePage, 1000);
+      }
+    </script>
+  </body>
+</html>

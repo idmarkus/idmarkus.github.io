@@ -1,0 +1,42 @@
+.img-gallery {
+    text-align: center;
+    padding-left: 12vw;
+    padding-right: 12vw;
+    padding-top: 0;
+    border: none;
+    line-height: 0;
+    column-count: 5;
+    column-gap: 2vw;
+}
+
+.img-gallery img {
+    max-width: 100%;
+    padding: 2vw 0 0 0;
+    height: auto;
+}
+
+@media (max-width: 60cm) {
+    .img-gallery {
+        column-count: 4;
+    }
+}
+@media (max-width: 44cm) {
+    .img-gallery {
+        column-count: 3;
+    }
+}
+@media (max-width: 28cm) {
+    .img-gallery {
+        column-count: 2;
+    }
+}
+@media (max-width: 20cm) {
+    .img-gallery {
+        column-count: 1;
+        padding-left: 6vw;
+        padding-right: 6vw;
+    }
+    .img-gallery img {
+        padding: 2vh 0 0 0;
+    }
+}

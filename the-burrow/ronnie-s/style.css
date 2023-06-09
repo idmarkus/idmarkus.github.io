@@ -1,0 +1,7 @@
+/* .video { */
+/*     max-width: calc(40vh * (16/9)); */
+/*     max-height: 40vh; */
+/*     --width: calc(100vw - 3em); */
+/*     width: var(--width); */
+/*     height: calc(var(--width) * (9/16)); */
+/* } */

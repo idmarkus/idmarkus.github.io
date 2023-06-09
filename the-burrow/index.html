@@ -1,0 +1,48 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Burrow, The</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/random_work.js"></script>
+    <script src="js/infobuttons.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+
+  <body>
+    <div id="overlay-underlay-click" onclick="openInfo()" style="background:#fff6;position:absolute;width:100%;height:100%;z-index:1;display:none">
+    </div>
+    <div class="overlay-container" id="infobar">
+      <button onclick="openInfo()" id="overlayclose-btn"><svg viewBox="0 0 24 24">
+          <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+        </svg>
+      </button>
+      <div class="overlay-content" id="overlay-content"></div>
+    </div>
+    
+    <div class="head-container">
+      <div id="THE">THE</div>
+      <div id="BURROW">BURROW</div>
+      <!-- Refresh button -->
+      <button id="refresh-btn" onClick="window.location.reload();">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M19,8L15,12H18A6,6 0 0,1 12,18C11,18 10.03,17.75 9.2,17.3L7.74,18.76C8.97,19.54 10.43,20 12,20A8,8 0 0,0 20,12H23M6,12A6,6 0 0,1 12,6C13,6 13.97,6.25 14.8,6.7L16.26,5.24C15.03,4.46 13.57,4 12,4A8,8 0 0,0 4,12H1L5,16L9,12"></path>
+        </svg>
+      </button>      
+    </div> <!-- head-container -->
+    <code class="nwork"></code>
+    <code class="button-descr">Refresh for next in disorder</code>
+    <button id="help-btn" onClick="openInfo()">
+      <svg width="24" height="24" viewBox="0 0 24 24">
+        <path d="M10,19H13V22H10V19M12,2C17.35,2.22 19.68,7.62 16.5,11.67C15.67,12.67 14.33,13.33 13.67,14.17C13,15 13,16 13,17H10C10,15.33 10,13.92 10.67,12.92C11.33,11.92 12.67,11.33 13.5,10.67C15.92,8.43 15.32,5.26 12,5A3,3 0 0,0 9,8H6A6,6 0 0,1 12,2Z" />
+      </svg>
+    </button>
+    <div id="work"></div>
+    <script>
+      let selection = "/" + getRandomWork();
+      $("#work").html("<iframe src='" + selection + "/index.html'></iframe>");
+      $(".nwork").html("" + getWorkString());
+      $('#overlay-content').load('description.html');
+    </script>
+  </body>
+</html>

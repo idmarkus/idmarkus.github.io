@@ -1,0 +1,23 @@
+:root {
+    overflow-x: hidden;
+}
+.docimg {
+    max-width: calc((68vh * (16/9) - 1em) / 3);
+    width: calc(33vw - 0.66em);
+    height: auto;
+    padding-top: 2em;
+    padding-bottom: 0;
+}
+.docimg-container {
+    text-align: center;
+}
+@media (max-width: 1000px) {
+    .docimg-container {
+        display: block;
+    }
+    .docimg {
+        max-width: 530px;
+        width: 100%;
+        padding-top: 1em;
+    }
+}

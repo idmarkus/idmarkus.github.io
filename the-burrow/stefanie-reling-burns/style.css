@@ -1,0 +1,27 @@
+:root {
+    overflow-x: hidden;
+}
+.video {
+    text-align: left;
+    --max-height: 68vh;
+    max-width: calc(var(--max-height) * (640/468));
+    max-height: var(--max-height);
+    --width: calc(100vw - 1em);
+    width: var(--width);
+    height: calc(var(--width) * (468/640));
+}
+@media (max-width: 640px) {
+    .video {
+        width: calc(100vw - 1em);
+        height: calc((100vw - 1em) * (468/640));
+    }
+}
+
+.work-container audio {
+    padding-top: 4rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+}
+.work-container code {
+    font-size: inherit;
+}

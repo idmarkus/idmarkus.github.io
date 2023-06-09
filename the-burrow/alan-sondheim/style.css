@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400|Space+Mono&display=swap');
+
+html,body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+:root {--accwidth: 800pt;}
+a {
+    color: blue;
+    text-decoration: underline solid;
+}
+.work-header {
+    /* position: absolute; */
+    /* z-index: -1; */
+    /* padding-left: 0.3em; */
+    /* padding-top: 0.3em; */
+}
+.work-container {
+    overflow: hidden;
+    margin: auto auto;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.text-container {
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    height: 100%;
+}
+.accordion {
+    font-family: "Work Sans", sans-serif;
+    font-size: 15pt;
+    line-height: 1;
+    text-align: left;
+    cursor: pointer;
+    max-width: var(--accwidth);
+    width: 100%;
+    background: #222;
+    color: #fff;
+    padding: 18px;
+    border: 0.5px outset #222;
+    outline: none;
+}
+.accordion:hover {
+    background: #141414;
+    /* border: 1px inset gray; */
+}
+.active, .accordion:active {
+    background: #000;
+    border: 0.5px inset #222;
+    /* padding: 24px; */
+    /* transition: 0.4s; */
+}
+.active {
+    background: #141414;
+    /* line-height: 0.5; */
+}
+.panel {
+    max-height: 0;
+    max-width: var(--accwidth);
+    /* max-width: 80%; */
+    width: 100%;
+    overflow-y: auto;
+    /* display: none; */
+    transition: 0.4s;
+    /* outline: 0.2px solid black; */
+}
+
+.from-line {
+    background: #eee;
+    color: #111;
+    display: flex;
+    /* padding-left: 1em; */
+    /* justify-content: center; */
+    align-items: center;
+    text-align: left;
+    font-size: 14pt;
+    margin: 0.5em;
+    line-height: 1.2;
+    font-family: "Source Code Pro", monospace;
+}
+
+.panel img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+    font-size: 13pt;
+    color: #666;
+}
+
+.text {
+    margin: 0.5em;
+    line-height: 1.5;
+    font-weight: 400;
+    /* color: #333; */
+    font-family: "Space Mono", monospace;
+    font-feature-settings: "liga" 0;
+    white-space: pre;
+    text-align: left;
+    font-size: 14pt;
+}
+@media (max-aspect-ratio: 1/1) {
+    :root {
+        --accwidth: 100%;
+    }
+}
+@media (max-width: 535pt) {
+    .text {
+        font-size: 2.65vw;
+    }
+    .from-line {
+        font-size: 2.65vw;
+    }
+}

@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,300i,400,400i,700");
+
+html {
+  /* overflow-y: scroll; */
+  overflow-x:hidden;
+}
+
+:root {
+    background: #fff;
+    font-size: 16pt;
+    font-family: Quicksand, sans-serif;
+}
+
+body {
+  margin: auto;
+  min-width: 50%;
+  max-width: 46rem;
+  padding: .5rem 1rem 1rem 1rem;
+}
+
+.asciiart {
+  margin: auto;
+  min-width: 25rem;
+  max-width: 25rem;
+  padding: none;
+  border: none;
+  margin: none auto;
+  /* background: #acf7; */
+  position: relative;
+  top: .3rem;
+  z-index: -1;
+}
+.asciiart pre {
+  display: block;
+  font-size: .4rem;
+  line-height: 95%;
+  font-weight: bold;
+  white-space:pre;
+  font-family: Source Code Pro, monospace;
+  color: black;
+  background: #fff0;
+}
+
+.infobox {
+    margin: auto;
+    min-width: 50%;
+    max-width: 46rem;
+    padding:  2rem 2rem 2rem 2rem;
+    background: black;
+    color: white;
+}
+
+.infobox a {
+    font-size: inherit;
+    background-color: #ffff;
+    color: #000f;
+    font-family: Source Code Pro, monospace;
+    text-decoration: none;
+    outline: 2px dashed;
+    margin: auto;
+    padding: .5rem;
+    line-height: 2;
+    text-align: center;
+    pointer-events: auto;
+}
+
+.infobox a:hover{
+    background: #7bf;
+    transition: background .1s;
+}
+
+.infobox a:active{
+    background: #acf;
+    transition: background .1s;
+}
+
+.asciiart {
+  animation-name: asciidig;
+  animation-duration: 25s;
+  animation-delay: 3s;
+  animation-fill-mode: both;
+}
+
+@keyframes dig {
+    /* 0% { background: none; color: #fff; transform: inherit; }
+    5% { background: none; color: #000; transform: translateY(5vh);} */
+    100% { background: none; color: #000; transform: translateY(100vh);}
+}
+
+@keyframes asciidig {
+  100% {transform: translate(0, 8vh);}
+}
+
+.descrtext {
+  background: #fff;
+  margin: auto;
+  min-width: 50%;
+  max-width: 46rem;
+  border: none;
+  padding: 3rem 3rem 3rem 3rem;
+  overflow: auto;
+
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-character;
+  line-height: 1.25;
+
+  outline: 1px dotted black;
+  z-index: 1;
+}
+
+.descrtext a {
+  color: #444;
+  text-decoration: underline dotted gray;
+}
+
+.descrtext a:hover{
+    color: #25b;
+    /* color: black; */
+    /* text-decoration: underline dotted #7bf; */
+    transition: color .1s;
+}
+
+.descrtext a:active{
+    background: #bdf;
+    transition: background .1s;
+}
+
+@media screen and (max-width: 632px) {
+  .tabq {
+     display: none;
+     font-size: 14pt;
+  }
+}
+
+.tabq {
+margin: auto 1rem;
+font-family: Source Sans Pro, sans-serif;
+font-weight: 300;
+}
+
+blockquote {
+font-weight: 300;
+}

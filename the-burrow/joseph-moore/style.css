@@ -1,0 +1,43 @@
+a {
+    text-decoration: underline solid gray;
+    color: black;
+}
+#frame {
+    max-width: 100%;
+}
+@media (max-width: 1280px) {
+    #frame {
+        height: calc((100vw - 1em) * (9/16));
+    }
+}
+.work-container pre {
+    text-align: left;
+    padding-left: 0;
+    font-size: auto;
+}
+/* .loadbar-container { */
+/*     margin: auto; */
+/*     max-width: 100%; */
+/*     width: 1280; */
+/*     height: 2px; */
+/*     position: relative; */
+/*     /\* outline: 0.2px solid black; *\/ */
+/* } */
+/* .loadbar-container .bar { */
+/*     height: 100%; */
+/*     width: 0%; */
+/*     display: block; */
+/*     background: #222; */
+/*     position: relative; */
+/*     overflow: hidden; */
+/*     /\* animation: loading 25s linear infinite; *\/ */
+/*     /\* animation-play-state: paused; *\/ */
+/* } */
+/* @keyframes loading { */
+/*     0% {width: 0%;} */
+/*     100% {width: 100%;} */
+/* } */
+/* @keyframes loading-extra { */
+/*     0% {width: 0%;} */
+/*     100% {width: 100%;} */
+/* } */

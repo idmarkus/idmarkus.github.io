@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>below</title>
+    <link rel="stylesheet" href="../common.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="icon" type="image/png" href="../favicon.png">
+  </head>
+
+  <body>
+    <div class="work-header">
+      <div class="work-header-inner">
+        <p><a href="https://inhabitants.xyz/80.136.146.81/">inhabitants.xyz/80.136.146.81</a><br>
+          <b>Joseph Moore</b> 2019</p>
+      </div>
+    </div>
+    <div class="work-container">
+      <img id="frame" width="1280" height="720" src="">      
+      <script type="text/javascript">
+        function reloadImage(imageName){
+            document.getElementById("frame").src = "https://www.inhabitants.xyz/80.136.146.81/" + imageName + "?d=" + new Date().getTime();
+        }
+        window.onload = function(){
+            reloadImage("1.jpg");
+            setTimeout(reloadImage, 1000, "1.jpg");
+            setInterval(reloadImage, 25000, "1.jpg");
+        }
+      </script>
+      <p>I began making 24 hour recordings of webcams in 2014. Each recording is done at 1 frame every 10 seconds, creating 8640 frames during a 24 hour period. For VLW and The Burrow I created a new treatment of two of these recordings, one of the THÉMIS Solar Telescope located on the Canary Islands (for VLW), the other of a camera controlled milking machine located in Darmstadt Germany (for The Burrow). In this version each recording is played back at 1 frame every 25 seconds.</p>
+
+      <p>Many of the recordings in my archive focus on non-human animals at sites of domesticity (the family home), industrial production (the factory farm), and knowledge accumulation (the lab).  In this work I engage the history of non-human animals in photography and cinema and their relationship to the development of camera based biometrics. I am also interested in what can be revealed by slowing down and speeding up the playback of these recordings.</p>
+
+      <p>Considering the telescope alongside other imaging technologies (security cameras, CV controlled industrial devices) I think of Barthes Camera Lucida where he writes about Alexander Gardner’s photograph Portrait of Lewis Payne (1865). In the photograph Payne awaits execution and Barthes captions the image with “He is dead and he is going to die.” Peering through the telescope we see millions of dead stars whose light is only reaching us now. Like a letter from the deceased the past comes to us always too late.</p>
+
+      <p>Making these images is an attempt to bear witness to a disaster, one that cannot be fully accounted for in any single or group of images, that cannot be captured as a whole but only glimpsed in fragments, and one that is, as Barthes wrote of photographs, a “catastrophe which has already occurred.”</p>
+    </div>
+  </body>
+</html>
