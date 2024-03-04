@@ -13,8 +13,11 @@ html, body {
 
 .intro {
     /* position: inline; */
+
     width: 100%;
     height: 18vw;
+    /*position: relative;*/
+
     /* fill: black; */
     /* background-color: #222; */
 }
@@ -50,10 +53,43 @@ h2 {
 }
 img.page {
     z-index: 1;
-    max-width: 84vw;
+    /*min-width: 84vw;*/
     max-height: 100vh;
-    width: auto;
+    min-width: min(84vw, calc(1280px * 0.84));
+    width: calc(84vw - 6vw);
     height: auto;
-    margin: 1em 16vw;
+
+    margin: 1em auto 1em 16vw;
     user-select: none;
 }
+
+.video43x18
+{
+    /*width: 3820px;*/
+    z-index: 1;
+    max-height: 100vh;
+    min-width: min(84vw, calc(1280px * 0.84));
+    width: calc(84vw - 6vw);
+    height: auto;
+
+    /*max-width: calc(84vw - 12em);*/
+    /*width: 100%;*/
+
+    /*max-height: 100vh;*/
+    /*width: auto;*/
+
+    margin: -5vw 16vw;
+
+}
+
+#first {
+    margin: 9em auto 1em 16vw;
+}
+
+/*.video43x18 iframe {*/
+/*    !*min-width: 100%;*!*/
+/*    max-width: 84vw;*/
+/*    !*max-height: 100%;*!*/
+/*    max-height: 100vh;*/
+/*    !*width: auto;*!*/
+/*}*/
